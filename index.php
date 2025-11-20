@@ -95,15 +95,14 @@ header("Pragma: no-cache");
     <!-- PHP links will print here -->
     <div id="urls">
       <?php
-      $data = json_decode(
-          file_get_contents('https://raw.githubusercontent.com/axenvars/mysite/main/urls.json'),
-          true
-      );
+$src = 'https://raw.githubusercontent.com/axenvars/mysite/main/urls.json?x=' . time();
+$data = json_decode(file_get_contents($src), true);
 
-      foreach ($data as $x) {
-          echo '<a href="' . $x['url'] . '">' . strtoupper($x['name']) . '</a><br><br><br>';
-      }
-      ?>
+foreach ($data as $x) {
+    echo '<a href="' . $x['url'] . '">' . strtoupper($x['name']) . '</a><br><br><br>';
+}
+?>
+
     </div>
 <br><br><br>
   </main>
